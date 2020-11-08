@@ -1,0 +1,12 @@
+FROM python:3
+
+ENV PYTHONUNBUFFERED=1
+ENV PROJECT_NAME="my_project"
+ENV DJANGO_WORKDIR="/usr/src/${PROJECT_NAME}"
+
+RUN mkdir ${DJANGO_WORKDIR}
+WORKDIR ${DJANGO_WORKDIR}
+
+COPY ${PROJECT_NAME}/. ${DJANGO_WORKDIR}/.
+
+RUN pip install -r requirements.txt
