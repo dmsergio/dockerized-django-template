@@ -1,2 +1,2 @@
 # django-dev-docker-vscode
-Repo to development Django apps dockerized with vs code.
+Template repo to develop Django apps dockerized with vs code.
