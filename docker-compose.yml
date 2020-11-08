@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    container_name: django_db
+    image: postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  web:
+    container_name: "${PROJECT_NAME}_web"
+    image: "${PROJECT_NAME}_django"
+    build: .
+    env_file:
+      - .env
+    command: bash -c "tail -f /dev/null"  # to keep container running<
+    volumes:
+    - ./${PROJECT_NAME}:/usr/src/${PROJECT_NAME}
+    ports:
+    - "80:8000"
+    depends_on:
+      - db
